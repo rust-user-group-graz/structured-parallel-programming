@@ -1,0 +1,6 @@
+[package]
+name = "safety_1"
+version = "0.1.0"
+authors = ["David Forstenlechner <dforsten@gmail.com>"]
+
+[dependencies]
