@@ -1,6 +1,7 @@
 fn main() {
     let mut vector = Vec::new();
+    vector.push("one");
     let elem = vector[0];
-    vector.push("hello");
+    vector.push("two");
     println!("{}", elem);
 }
