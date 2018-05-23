@@ -1,0 +1,7 @@
+[package]
+name = "rayon_2"
+version = "0.1.0"
+authors = ["davidf <david.forstenlechner@gmx.at>"]
+
+[dependencies]
+rayon = "1.0.1"
