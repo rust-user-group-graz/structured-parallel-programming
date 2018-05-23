@@ -6,7 +6,7 @@
 
 // sole "owner" of v
 fn taking_v(_v: Vec<i32>) {
-    //
+    // ...
 }
 
 fn main() {
