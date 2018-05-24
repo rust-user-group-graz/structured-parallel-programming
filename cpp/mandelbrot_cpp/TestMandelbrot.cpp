@@ -18,13 +18,10 @@ static constexpr double Y_STEP = (Y_END - Y_START)/IMAGE_HEIGHT;
 
 static constexpr int MAX_ITER = 127;
 
-int mandelbrot(double start_real, double start_imag)
-{
+int mandelbrot(double start_real, double start_imag) {
     double z_real = start_real;
     double z_imag = start_imag;
-
-    for (int n = 0; n < MAX_ITER; ++n)
-    {
+    for (int n = 0; n < MAX_ITER; ++n) {
         double r2 = z_real * z_real;
         double i2 = z_imag * z_imag;
         if (r2 + i2 > 4.0) {
@@ -43,13 +40,11 @@ void index_to_imag(size_t i, double& real, double& imag) {
     imag = Y_START + Y_STEP * quot;
 }
 
-
 struct Mandelbrot {
     int* framebuffer;
 
     void operator()( const blocked_range<int>& range ) const {
-        for( int i = range.begin(); i != range.end(); ++i )
-        {
+        for( int i = range.begin(); i != range.end(); ++i ) {
             double real = 0.0;
             double imag = 0.0;
             index_to_imag(i, real, imag);
@@ -65,8 +60,4 @@ void TestMandelbrot::testMandelbrot() {
         mandelbrot.framebuffer = framebuffer;
         parallel_for( blocked_range<int>( 1, IMAGE_WIDTH * IMAGE_HEIGHT ), mandelbrot );
     };
-
-//    for (int i = 0; i < (IMAGE_HEIGHT * IMAGE_WIDTH); ++i) {
-//        qDebug("%d", framebuffer[i]);
-//    }
 }
