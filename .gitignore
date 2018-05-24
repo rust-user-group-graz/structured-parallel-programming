@@ -1,5 +1,6 @@
 target/
 **/.idea/workspace.xml
 cmake-build-debug/
+cmake-build-release/
 Cargo.lock
 

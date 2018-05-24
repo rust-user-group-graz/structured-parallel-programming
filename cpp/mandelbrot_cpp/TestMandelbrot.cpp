@@ -36,13 +36,24 @@ int mandelbrot(double start_real, double start_imag)
     return MAX_ITER;
 }
 
+void index_to_imag(size_t i, double& real, double& imag) {
+    double quot = (i / IMAGE_WIDTH);
+    double rem = (i % IMAGE_WIDTH);
+    real = X_START + X_STEP * rem;
+    imag = Y_START + Y_STEP * quot;
+}
+
+
 struct Mandelbrot {
     int* framebuffer;
 
     void operator()( const blocked_range<int>& range ) const {
         for( int i = range.begin(); i != range.end(); ++i )
         {
-            framebuffer[i] = 0;
+            double real = 0.0;
+            double imag = 0.0;
+            index_to_imag(i, real, imag);
+            framebuffer[i] = mandelbrot(real, imag);
         }
     }
 };
@@ -54,4 +65,8 @@ void TestMandelbrot::testMandelbrot() {
         mandelbrot.framebuffer = framebuffer;
         parallel_for( blocked_range<int>( 1, IMAGE_WIDTH * IMAGE_HEIGHT ), mandelbrot );
     };
+
+//    for (int i = 0; i < (IMAGE_HEIGHT * IMAGE_WIDTH); ++i) {
+//        qDebug("%d", framebuffer[i]);
+//    }
 }
