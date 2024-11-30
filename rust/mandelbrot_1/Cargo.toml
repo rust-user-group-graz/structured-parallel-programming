@@ -1,7 +1,19 @@
 [package]
 name = "mandelbrot_1"
 version = "0.1.0"
-authors = ["davidf <dforsten@gmail.com>"]
+edition = "2021"
+authors = ["David Forstenlechner <dforsten@gmail.com>"]
 
 [dependencies]
-rayon = "1.0.1"
+rayon = "1.7"
+
+[dev-dependencies]
+criterion = "0.4"
+
+[lib]
+name = "mandelbrot_lib"
+path = "src/lib.rs"
+
+[[bench]]
+name = "benchmark"
+harness = false
